@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 
 export default function App() {
   return (
@@ -9,11 +9,32 @@ export default function App() {
           source={{
             uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
           }}
-          style={{width: 200, height: 200}}
+          style={{width: 350, height: 300, marginTop: 10}}
+        />
+        <Image
+        
+        source={{
+          uri: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/06/person-at-computer.jpeg.jpg'
+        }}
+        style={{width: 200, height: 200, margin: 10,}}
         />
       <StatusBar style="auto" />
 
-      <Text>React && React-Native Developer</Text>
+      <Text
+      style={{
+        margin: 10,
+      }}
+      >React && React-Native Developer</Text>
+      <TextInput
+        style={{
+          height: 30,
+          padding: 5,
+          margin: 10,
+          borderColor: 'gray',
+          borderWidth: 3,
+        }}
+        defaultValue="Burayı doldurabilirsiniz!..."
+      />
 
     </View>
   );
@@ -22,7 +43,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'center',
   },

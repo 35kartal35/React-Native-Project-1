@@ -1,50 +1,72 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+  Button,
+  DrawerLayoutAndroid,
+  Text,
+  StyleSheet,
+  View,
+} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Mehmet Özdemir</Text>
-      <Image
-          source={{
-            uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
-          }}
-          style={{width: 350, height: 300, marginTop: 10}}
-        />
-        <Image
-        
-        source={{
-          uri: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/06/person-at-computer.jpeg.jpg'
-        }}
-        style={{width: 200, height: 200, margin: 10,}}
-        />
-      <StatusBar style="auto" />
+const App = () => {
+  const drawer = useRef(null);
+  const [drawerPosition, setDrawerPosition] = useState('left');
+  const changeDrawerPosition = () => {
+    if (drawerPosition === 'left') {
+      setDrawerPosition('right');
+    } else {
+      setDrawerPosition('left');
+    }
+  };
 
-      <Text
-      style={{
-        margin: 10,
-      }}
-      >React && React-Native Developer</Text>
-      <TextInput
-        style={{
-          height: 30,
-          padding: 5,
-          margin: 10,
-          borderColor: 'gray',
-          borderWidth: 3,
-        }}
-        defaultValue="Burayı doldurabilirsiniz!..."
+  const navigationView = () => (
+    <View style={[styles.container, styles.navigationContainer]}>
+      <Text style={styles.paragraph}>I'm in the Drawer!</Text>
+      <Button
+        title="Close drawer"
+        onPress={() => drawer.current.closeDrawer()}
       />
-
     </View>
   );
-}
+
+  return (
+    <DrawerLayoutAndroid
+      ref={drawer}
+      drawerWidth={300}
+      drawerPosition={drawerPosition}
+      renderNavigationView={navigationView}>
+      <View style={styles.container}>
+        <Text style={styles.paragraph}>Drawer on the {drawerPosition}!</Text>
+        <Button
+          title="Change Drawer Position"
+          onPress={() => changeDrawerPosition()}
+        />
+        <Text style={styles.paragraph}>
+          Swipe from the sid
+        </Text>
+        <Button
+          title="Open drawer"
+          onPress={() => drawer.current.openDrawer()}
+        />
+      </View>
+    </DrawerLayoutAndroid>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 16,
+  },
+  navigationContainer: {
+    backgroundColor: '#ecf0f1',
+  },
+  paragraph: {
+    padding: 16,
+    fontSize: 15,
+    textAlign: 'center',
   },
 });
+
+export default App;

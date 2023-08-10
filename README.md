@@ -1,2 +1,2 @@
 # React-Native-Project-1
-My project vestel callage
+React Native öğrenmeye başladığım ilk projem, öğrendiklerim şeyleri uygulayarak devam etmeyi tercih ediyorum...
